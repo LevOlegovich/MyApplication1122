@@ -11,8 +11,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.myapplication111122.R
-import com.example.myapplication111122.data.CategoriesModel
-import com.example.myapplication111122.data.TablayoutData
+import com.example.myapplication111122.data.models.CategoriesModel
+import com.example.myapplication111122.data.models.TablayoutData
 import com.example.myapplication111122.databinding.FragmentMainBinding
 import com.example.myapplication111122.presentation.adapters.TablayoutAdapter
 import com.google.android.material.tabs.TabLayout

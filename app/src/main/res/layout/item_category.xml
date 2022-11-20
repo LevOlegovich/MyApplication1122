@@ -9,7 +9,7 @@
         android:id="@+id/tabLayoutCircle"
         android:layout_width="71dp"
         android:layout_height="71dp"
-        android:src="@drawable/ic_circle_white"
+        android:src="@drawable/ic_ellipse_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +39,6 @@
         app:layout_constraintEnd_toEndOf="@id/tabLayoutCircle"
         app:layout_constraintStart_toStartOf="@id/tabLayoutCircle"
         app:layout_constraintTop_toBottomOf="@id/tabLayoutCircle"
-        tools:text="lorem" />
+        tools:text="ItemTab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

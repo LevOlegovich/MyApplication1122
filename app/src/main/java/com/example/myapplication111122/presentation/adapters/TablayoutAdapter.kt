@@ -3,7 +3,7 @@ package com.example.myapplication111122.presentation.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.myapplication111122.data.CategoriesModel
+import com.example.myapplication111122.data.models.CategoriesModel
 import com.example.myapplication111122.presentation.fragments.EmptyFragment
 import com.example.myapplication111122.presentation.fragments.PhonesFragment
 
