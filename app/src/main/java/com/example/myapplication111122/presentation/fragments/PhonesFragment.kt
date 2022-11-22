@@ -6,11 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.myapplication111122.databinding.FragmentPhonesBinding
+import com.example.myapplication111122.presentation.adapters.homestorehotsale.HotSaleAdapter
 import com.example.myapplication111122.presentation.viewmodel.PhonesViewModel
 import com.example.myapplication111122.utils.ResourceState
+import kotlinx.coroutines.launch
 
 
 class PhonesFragment : Fragment() {
@@ -20,6 +25,7 @@ class PhonesFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentPhonesBinding is null")
 
     private val viewModel by viewModels<PhonesViewModel>()
+    lateinit var hotSaleAdapter: HotSaleAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,12 +39,13 @@ class PhonesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadPhones()
+        initAdapter()
+
         viewModel.phonesLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is ResourceState.Success -> {
                     Log.d("PhonesFragment: ", it.data.toString())
-
+                    hotSaleAdapter.submitList(it.data?.homeStoreHotSale)
                 }
                 is ResourceState.Error -> {
                     Log.d("PhonesFragment: ", it.message.toString())
@@ -51,6 +58,15 @@ class PhonesFragment : Fragment() {
             }
         }
 
+
+    }
+
+    private fun initAdapter() {
+        hotSaleAdapter = HotSaleAdapter()
+        binding.recyclerView.apply {
+            adapter = hotSaleAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
     }
 
 

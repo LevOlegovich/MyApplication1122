@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 class PhonesViewModel : ViewModel() {
 
     val repository = PhonesRepository(ApiConfig.apiService())
-    private val _phonesLiveData = MutableLiveData<ResourceState<PhonesDto>>()
+    private var _phonesLiveData = MutableLiveData<ResourceState<PhonesDto>>()
     val phonesLiveData: LiveData<ResourceState<PhonesDto>>
         get() = _phonesLiveData
 
@@ -23,9 +23,14 @@ class PhonesViewModel : ViewModel() {
         _phonesLiveData.postValue(ResourceState.Error(exeption.message))
     }
 
-    fun loadPhones() {
+    init {
+        loadPhones()
+    }
+
+ private fun loadPhones() {
         _phonesLiveData.value = ResourceState.Loading()
-        viewModelScope.launch {
+
+        viewModelScope.launch(exeptionHandler) {
 
             val data = repository.getPhonesDto()
             _phonesLiveData.value = ResourceState.Success(data)

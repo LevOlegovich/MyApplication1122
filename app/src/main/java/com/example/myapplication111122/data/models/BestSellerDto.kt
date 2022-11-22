@@ -1,12 +1,15 @@
 package com.example.myapplication111122.data.models
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class BestSellerDto(
-    val discount_price: Int?=null,
-    val id: Int?=null,
-    val is_favorites: Boolean?=null,
-    val picture: String?=null,
-    val price_without_discount: Int?=null,
-    val title: String?=null
-):Serializable
+
+    @SerializedName("discount_price") val discountPrice: Int?,
+    val id: Int?,
+    @SerializedName("is_favorites") val isFavorites: Boolean?,
+    val picture: String?,
+    @SerializedName("price_without_discount") val priceWithoutDiscount: Int?,
+    val title: String?
+)

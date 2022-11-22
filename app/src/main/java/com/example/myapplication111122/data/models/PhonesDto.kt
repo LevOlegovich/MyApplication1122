@@ -1,8 +1,10 @@
 package com.example.myapplication111122.data.models
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class PhonesDto(
-    val bestSeller: List<BestSellerDto>?,
-    val homeStoreHotSale: List<HomeStoreHotSale>?
-) : Serializable
+    @SerializedName("home_store") val homeStoreHotSale: List<HomeStoreHotSale>?,
+    @SerializedName("best_seller") val bestSeller: List<BestSellerDto>?
+)

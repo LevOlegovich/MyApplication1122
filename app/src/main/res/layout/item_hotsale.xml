@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/phohesImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <ImageView
+            android:id="@+id/newLabel"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/circle" />
+
+        <TextView
+            android:id="@+id/newText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/newLabel"
+            app:layout_constraintEnd_toEndOf="@+id/newLabel"
+            app:layout_constraintStart_toStartOf="@+id/newLabel"
+            app:layout_constraintTop_toTopOf="@+id/newLabel"
+            tools:text="New" />
+
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Iphone 50 pro+-" />
+
+        <TextView
+            android:id="@+id/subtitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/titleTv"
+            app:layout_constraintTop_toBottomOf="@+id/titleTv"
+            tools:text="Súper.Mega.Rápido" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buyBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/bg_image_10"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/darkblue"
+            app:layout_constraintStart_toStartOf="@+id/subtitleTV"
+            app:layout_constraintTop_toBottomOf="@+id/subtitleTV"
+           android:text="Buy Now"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
