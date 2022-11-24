@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        CoroutineScope(Dispatchers.Main).launch { //This method will be executed once the timer is over
+        CoroutineScope(Dispatchers.IO).launch { //This method will be executed once the timer is over
             delay(1000)
             // Start your app main activity
             val i = Intent(this@SplashActivity, MainActivity::class.java)
@@ -23,3 +23,14 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 }
+
+//CoroutineScope(Dispatchers.IO).launch { //This method will be executed once the timer is over
+//    delay(1000)
+//    // Start your app main activity
+//    val i = Intent(this@SplashActivity, MainActivity::class.java)
+//    startActivity(i)
+//    // close this activity
+//    finish()
+//}
+//}
+//}
