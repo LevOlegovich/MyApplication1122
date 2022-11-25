@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication111122.R
 import com.example.myapplication111122.data.models.BestSellerDto
 import com.example.myapplication111122.databinding.ItemBestsellerBinding
+import java.text.DecimalFormat
 
 class BestSellerAdapter : ListAdapter<BestSellerDto, BestSellerViewHolder>(BestSellerDiffCallBack) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BestSellerViewHolder {
@@ -30,9 +31,13 @@ class BestSellerAdapter : ListAdapter<BestSellerDto, BestSellerViewHolder>(BestS
             } else {
                 favoriteImage.setImageResource(R.drawable.ic_unfavorite)
             }
+            val decim = DecimalFormat("#,###.##")
 
-            priceWithDiscount.text = phoneBestSellerItem.priceWithoutDiscount.toString()
-            priceDicountStrikeLine.text = phoneBestSellerItem.discountPrice.toString()
+            var priceDiscount = "$ %s"
+            priceWithDiscount.text =
+//                String.format(priceDiscount, phoneBestSellerItem.priceWithoutDiscount)
+                String.format(priceDiscount, decim.format(phoneBestSellerItem.discountPrice))
+            priceDiscountLineTextCrossOut.text = phoneBestSellerItem.discountPrice.toString()
             titleTV.text = phoneBestSellerItem.title
 
 
