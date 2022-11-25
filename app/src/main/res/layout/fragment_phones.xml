@@ -19,7 +19,7 @@
         android:background="@color/background_color"
         android:text="@string/see_more"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/rcViewHotsale" />
 
     <TextView
         android:id="@+id/textView4"
@@ -31,7 +31,7 @@
         android:background="@color/background_color"
         android:text="@string/best_seller"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/rcViewHotsale" />
 
     <TextView
         android:id="@+id/textView3"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rcViewHotsale"
         android:layout_width="match_parent"
         android:layout_height="199dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,11 +68,18 @@
         tools:listitem="@layout/item_hotsale" />
 
     <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/rcViewBestSeller"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:listitem="@layout/item_bestseller" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

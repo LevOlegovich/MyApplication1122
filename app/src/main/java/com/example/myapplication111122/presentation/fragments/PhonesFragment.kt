@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.myapplication111122.databinding.FragmentPhonesBinding
+import com.example.myapplication111122.presentation.adapters.bestseller.BestSellerAdapter
 import com.example.myapplication111122.presentation.adapters.homestorehotsale.HotSaleAdapter
 import com.example.myapplication111122.presentation.viewmodel.PhonesViewModel
 import com.example.myapplication111122.utils.ResourceState
@@ -26,6 +28,7 @@ class PhonesFragment : Fragment() {
 
     private val viewModel by viewModels<PhonesViewModel>()
     lateinit var hotSaleAdapter: HotSaleAdapter
+    lateinit var bestSellerAdapter: BestSellerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +49,7 @@ class PhonesFragment : Fragment() {
                 is ResourceState.Success -> {
                     Log.d("PhonesFragment: ", it.data.toString())
                     hotSaleAdapter.submitList(it.data?.homeStoreHotSale)
+                    bestSellerAdapter.submitList(it.data?.bestSeller)
                 }
                 is ResourceState.Error -> {
                     Log.d("PhonesFragment: ", it.message.toString())
@@ -63,10 +67,18 @@ class PhonesFragment : Fragment() {
 
     private fun initAdapter() {
         hotSaleAdapter = HotSaleAdapter()
-        binding.recyclerView.apply {
+        binding.rcViewHotsale.apply {
             adapter = hotSaleAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
+
+        bestSellerAdapter = BestSellerAdapter()
+        binding.rcViewBestSeller.apply {
+            adapter = bestSellerAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+        }
+
     }
 
 
