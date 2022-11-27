@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
     private val binding: FragmentMainBinding
         get() = _binding ?: throw RuntimeException("FragmentEmptyBinding is null")
 
-
+    lateinit var filterDialog: FilterBottomSheetDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +42,23 @@ class MainFragment : Fragment() {
         val categoriesList = TablayoutData.categoriesList
         Log.d("MainFragment", categoriesList.toString())
         initPager(categoriesList)
+        initBottomBar()
+        binding.filterImage.setOnClickListener {
+            filterShow()
+        }
+    }
+
+    private fun initBottomBar() {
+        val shoppingCartItem =
+            binding.bottomNavigationView.getOrCreateBadge(R.id.shoppingCartFragment)
+        shoppingCartItem.number = 2
+        shoppingCartItem.isVisible = true
+    }
+
+    private fun filterShow() {
+        filterDialog = FilterBottomSheetDialog()
+        filterDialog.show(childFragmentManager, "Filtersdialog")
+
     }
 
     private fun initPager(categoriesList: List<CategoriesModel>) {

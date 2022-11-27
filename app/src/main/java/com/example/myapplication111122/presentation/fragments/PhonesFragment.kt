@@ -2,22 +2,18 @@ package com.example.myapplication111122.presentation.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.myapplication111122.databinding.FragmentPhonesBinding
 import com.example.myapplication111122.presentation.adapters.bestseller.BestSellerAdapter
 import com.example.myapplication111122.presentation.adapters.homestorehotsale.HotSaleAdapter
 import com.example.myapplication111122.presentation.viewmodel.PhonesViewModel
 import com.example.myapplication111122.utils.ResourceState
-import kotlinx.coroutines.launch
 
 
 class PhonesFragment : Fragment() {

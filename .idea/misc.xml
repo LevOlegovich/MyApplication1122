@@ -8,27 +8,41 @@
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable-v24/ic_circle_white.xml" value="0.1775" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2115" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable-v24/ic_pets.xml" value="0.1775" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/background_close_btn.xml" value="0.1945" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/bg_image_10.xml" value="0.2045" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/bottommsheet_background.xml" value="0.1945" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/circle.xml" value="0.2115" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1945" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_books.xml" value="0.2115" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_computer.xml" value="0.2115" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_ellipse_5.xml" value="0.1775" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_explorer.xml" value="0.1945" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_favorite.xml" value="0.1945" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_favorite_bottomtab.xml" value="0.1945" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_filtrer.xml" value="0.1945" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_group.xml" value="0.2115" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_health.xml" value="0.2115" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2115" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_location.xml" value="0.1775" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_phones.xml" value="0.1775" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_profile.xml" value="0.1945" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_shopping_cart.xml" value="0.1945" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/ic_unfavorite.xml" value="0.1945" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/drawable/line.xml" value="0.1945" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/font/mark_pro_bold.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/activity_main.xml" value="0.14447463768115942" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/filters.xml" value="0.42398022249690975" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/filters_dialog.xml" value="0.5" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/fragment_empty.xml" value="0.14447463768115942" />
-        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/fragment_main.xml" value="0.22" />
-        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/fragment_phones.xml" value="0.33" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/fragment_main.xml" value="0.33" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/fragment_phones.xml" value="0.3572311495673671" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/item_bestseller.xml" value="0.4883419689119171" />
         <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/item_category.xml" value="0.67" />
-        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/item_hotsale.xml" value="0.33" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/layout/item_hotsale.xml" value="0.22" />
+        <entry key="..\:/Users/LeV/AndroidStudioProjects/Premium/MyApplication111122/app/src/main/res/menu/menu_bottom_navogation.xml" value="0.25" />
         <entry key="..\:/Users/LevPc/AndroidStudioProjects/MyApplication111122/app/src/main/res/drawable/circle.xml" value="0.197" />
         <entry key="..\:/Users/LevPc/AndroidStudioProjects/MyApplication111122/app/src/main/res/layout/activity_splash.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/LevPc/AndroidStudioProjects/MyApplication111122/app/src/main/res/layout/item_bestseller.xml" value="0.1" />
       </map>
     </option>
   </component>
