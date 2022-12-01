@@ -10,11 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.myapplication111122.R
 import com.example.myapplication111122.data.models.CategoriesModel
+import com.example.myapplication111122.data.models.FilterModel
 import com.example.myapplication111122.data.models.TablayoutData
 import com.example.myapplication111122.databinding.FragmentMainBinding
 import com.example.myapplication111122.presentation.adapters.TablayoutAdapter
+import com.example.myapplication111122.presentation.viewmodel.MainViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -24,6 +27,9 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
         get() = _binding ?: throw RuntimeException("FragmentEmptyBinding is null")
+    private val viewModel by viewModels<MainViewModel>()
+    private var filter: FilterModel? = null
+
 
     lateinit var filterDialog: FilterBottomSheetDialog
 
@@ -42,21 +48,21 @@ class MainFragment : Fragment() {
         val categoriesList = TablayoutData.categoriesList
         Log.d("MainFragment", categoriesList.toString())
         initPager(categoriesList)
-        initBottomBar()
+//        initBottomBar()
+        viewModel.filterLiveData.observe(viewLifecycleOwner) {
+            filter = it
+
+        }
+
         binding.filterImage.setOnClickListener {
             filterShow()
         }
     }
 
-    private fun initBottomBar() {
-        val shoppingCartItem =
-            binding.bottomNavigationView.getOrCreateBadge(R.id.shoppingCartFragment)
-        shoppingCartItem.number = 2
-        shoppingCartItem.isVisible = true
-    }
 
     private fun filterShow() {
         filterDialog = FilterBottomSheetDialog()
+
         filterDialog.show(childFragmentManager, "Filtersdialog")
 
     }

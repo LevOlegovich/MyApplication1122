@@ -9,7 +9,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
+        android:id="@+id/closeBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -18,11 +18,11 @@
         app:icon="@drawable/ic_close"
 
 
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="@+id/doneBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
+        android:id="@+id/doneBtn"
         style="@style/tvMedium"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
         android:text="Filter Options"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="@+id/doneBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,8 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Price"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintStart_toStartOf="@+id/brandSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/brandSpinner" />
 
     <TextView
         android:id="@+id/textView9"
@@ -76,11 +76,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Size"
-        app:layout_constraintStart_toStartOf="@+id/spinner2"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintStart_toStartOf="@+id/priceSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/priceSpinner" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/brandSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -91,24 +91,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/priceSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:entries="@array/price_spinner"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="@+id/brandSpinner"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/sizeSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="30dp"
         android:entries="@array/size_spinner"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/spinner2"
+        app:layout_constraintEnd_toEndOf="@+id/priceSpinner"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 </androidx.constraintlayout.widget.ConstraintLayout>
