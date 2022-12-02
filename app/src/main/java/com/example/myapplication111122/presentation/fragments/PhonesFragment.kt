@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication111122.data.models.PhonesDto
 import com.example.myapplication111122.databinding.FragmentPhonesBinding
 import com.example.myapplication111122.presentation.adapters.bestseller.BestSellerAdapter
 import com.example.myapplication111122.presentation.adapters.homestorehotsale.HotSaleAdapter
-import com.example.myapplication111122.presentation.viewmodel.PhonesViewModel
+import com.example.myapplication111122.presentation.viewmodel.SharedPhonesViewModel
 import com.example.myapplication111122.utils.ResourceState
 
 
@@ -22,7 +23,10 @@ class PhonesFragment : Fragment() {
     private val binding: FragmentPhonesBinding
         get() = _binding ?: throw RuntimeException("FragmentPhonesBinding is null")
 
-    private val viewModel by viewModels<PhonesViewModel>()
+
+
+
+
     lateinit var hotSaleAdapter: HotSaleAdapter
     lateinit var bestSellerAdapter: BestSellerAdapter
 
@@ -39,13 +43,29 @@ class PhonesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        val viewModel = ViewModelProvider(requireActivity()).get(SharedPhonesViewModel::class.java)
 
+        viewModel.filterLiveData.observe(viewLifecycleOwner) {
+
+            Log.d("PhonesFragment: ", it.toString())
+            viewModel.update()
+
+        }
         viewModel.phonesLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is ResourceState.Success -> {
                     Log.d("PhonesFragment: ", it.data.toString())
-                    hotSaleAdapter.submitList(it.data?.homeStoreHotSale)
-                    bestSellerAdapter.submitList(it.data?.bestSeller)
+                    if (viewModel.filterLiveData.value == null) {
+                        bestSellerAdapter.submitList(it.data?.bestSeller)
+                        hotSaleAdapter.submitList(it.data?.homeStoreHotSale)
+
+
+                    } else {
+                        var newBestSeller = it.data?.let { phones -> viewModel.filterPrice(phones) }
+                        bestSellerAdapter.submitList(newBestSeller?.bestSeller)
+                    }
+
+
                 }
                 is ResourceState.Error -> {
                     Log.d("PhonesFragment: ", it.message.toString())
@@ -61,6 +81,7 @@ class PhonesFragment : Fragment() {
 
     }
 
+
     private fun initAdapter() {
         hotSaleAdapter = HotSaleAdapter()
         binding.rcViewHotsale.apply {
@@ -74,6 +95,14 @@ class PhonesFragment : Fragment() {
             adapter = bestSellerAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
         }
+
+    }
+
+
+    private fun showPhones(resourceState: ResourceState<PhonesDto>) {
+
+        hotSaleAdapter.submitList(resourceState.data?.homeStoreHotSale)
+        bestSellerAdapter.submitList(resourceState.data?.bestSeller)
 
     }
 
