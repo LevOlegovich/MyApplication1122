@@ -61,7 +61,7 @@ class PhonesFragment : Fragment() {
 
 
                     } else {
-                        var newBestSeller = it.data?.let { phones -> viewModel.filterPrice(phones) }
+                        var newBestSeller = it.data?.let { phones -> viewModel.filterBrand(phones) }
                         bestSellerAdapter.submitList(newBestSeller?.bestSeller)
                     }
 

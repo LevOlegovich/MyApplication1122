@@ -47,7 +47,7 @@ class SharedPhonesViewModel : ViewModel() {
 
     }
 
-    fun filterPrice(phones: PhonesDto): PhonesDto {
+    fun filterBrand(phones: PhonesDto): PhonesDto {
         val brandFilter = filterLiveData.value?.brand
         if (!brandFilter.equals("Select Brand")) {
             val newListHomeStoreHotSale = phones.homeStoreHotSale
