@@ -9,6 +9,7 @@ import com.example.myapplication111122.R
 import com.example.myapplication111122.data.models.FilterModel
 import com.example.myapplication111122.databinding.FiltersDialogBinding
 import com.example.myapplication111122.presentation.viewmodel.SharedPhonesViewModel
+import com.example.myapplication111122.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.filters_dialog.*
 
@@ -57,14 +58,25 @@ class FilterBottomSheetDialog() : BottomSheetDialogFragment() {
     }
 
     private fun getAndSetupFilter() {
-        val listBrand = resources.getStringArray(R.array.brand_spinner)
+        val listBrand = resources.getStringArray(R.array.brand_spinner).toList()
         brandSpinner.setSelection(listBrand.indexOf(viewModel.filterLiveData.value?.brand))
 
-        val listPrice = resources.getStringArray(R.array.price_spinner)
+        val listPrice = resources.getStringArray(R.array.price_spinner).toList()
         priceSpinner.setSelection(listPrice.indexOf(viewModel.filterLiveData.value?.price))
 
-        val listSize = resources.getStringArray(R.array.size_spinner)
+        val listSize = resources.getStringArray(R.array.size_spinner).toList()
         sizeSpinner.setSelection(listSize.indexOf(viewModel.filterLiveData.value?.size))
+
+
+        val params = mapOf(
+            Constants.BRAND_KEY to listBrand,
+            Constants.PRICE_KEY to listPrice,
+            Constants.SIZE_KEY to listSize
+        )
+        viewModel.setFilterParameters(
+            params
+        )
+
     }
 
 

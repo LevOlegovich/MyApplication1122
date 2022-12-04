@@ -9,6 +9,7 @@ import com.example.myapplication111122.data.api.ApiConfig
 import com.example.myapplication111122.data.models.FilterModel
 import com.example.myapplication111122.data.models.PhonesDto
 import com.example.myapplication111122.data.repozitory.PhonesRepository
+import com.example.myapplication111122.utils.Constants
 import com.example.myapplication111122.utils.ResourceState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -16,11 +17,12 @@ import kotlinx.coroutines.launch
 
 class SharedPhonesViewModel : ViewModel() {
 
+    val repository = PhonesRepository(ApiConfig.apiService())
+
     private var _filterLiveData = MutableLiveData<FilterModel>()
     val filterLiveData: LiveData<FilterModel>
         get() = _filterLiveData
 
-    val repository = PhonesRepository(ApiConfig.apiService())
     private var _phonesLiveData = MutableLiveData<ResourceState<PhonesDto>>()
     val phonesLiveData: LiveData<ResourceState<PhonesDto>>
         get() = _phonesLiveData
@@ -29,6 +31,8 @@ class SharedPhonesViewModel : ViewModel() {
     private val exeptionHandler = CoroutineExceptionHandler { _, exeption ->
         _phonesLiveData.postValue(ResourceState.Error(exeption.message))
     }
+
+    private var filterParameters = mapOf<String, List<String>>()
 
     init {
         loadPhones()
@@ -49,17 +53,30 @@ class SharedPhonesViewModel : ViewModel() {
 
     fun filterBrand(phones: PhonesDto): PhonesDto {
         val brandFilter = filterLiveData.value?.brand
-        if (!brandFilter.equals("Select Brand")) {
+        val defaultBrandText = filterParameters[Constants.BRAND_KEY]?.get(0)
+
+      //Конвертация диапазона цен со спиннера в Int
+        val diapazonePriceFilter = filterLiveData.value?.price
+        val listStringPrice = diapazonePriceFilter?.split("-")
+        val listIntPrice = listStringPrice?.map {
+            it.replace("$", "").trim().toInt()
+        }
+
+
+        return if (!brandFilter.equals(defaultBrandText)) {
             val newListHomeStoreHotSale = phones.homeStoreHotSale
             val newListBestSeller =
-                phones.bestSeller?.filter { brandFilter?.let { it1 -> it.title?.contains(it1) } == true }
+                phones.bestSeller?.filter {
+                    brandFilter?.let { brand -> it.title?.contains(brand) } == true
+                }
 
             Log.d("PhonesViewModel: ", newListBestSeller.toString())
             Log.d("PhonesViewModel: ", brandFilter.toString())
+            Log.d("PhonesViewModel: ", listIntPrice.toString())
 
-            return PhonesDto(newListHomeStoreHotSale, newListBestSeller)
+            PhonesDto(newListHomeStoreHotSale, newListBestSeller)
         } else {
-            return phones
+            phones
         }
 
     }
@@ -71,6 +88,13 @@ class SharedPhonesViewModel : ViewModel() {
 
     fun update() {
         _phonesLiveData.value = phonesLiveData.value
+    }
+
+    fun setFilterParameters(parameters: Map<String, List<String>>) {
+        //Добавление всех фильтров
+        if (filterParameters.isEmpty()) {
+            filterParameters = parameters
+        }
     }
 
 

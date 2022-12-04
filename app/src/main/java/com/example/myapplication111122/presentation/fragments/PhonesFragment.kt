@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication111122.data.models.PhonesDto
 import com.example.myapplication111122.databinding.FragmentPhonesBinding
 import com.example.myapplication111122.presentation.adapters.bestseller.BestSellerAdapter
 import com.example.myapplication111122.presentation.adapters.homestorehotsale.HotSaleAdapter
 import com.example.myapplication111122.presentation.viewmodel.SharedPhonesViewModel
 import com.example.myapplication111122.utils.ResourceState
+import kotlinx.android.synthetic.main.fragment_phones.*
 
 
 class PhonesFragment : Fragment() {
@@ -23,8 +26,7 @@ class PhonesFragment : Fragment() {
     private val binding: FragmentPhonesBinding
         get() = _binding ?: throw RuntimeException("FragmentPhonesBinding is null")
 
-
-
+    lateinit var viewModel: SharedPhonesViewModel
 
 
     lateinit var hotSaleAdapter: HotSaleAdapter
@@ -43,40 +45,34 @@ class PhonesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        val viewModel = ViewModelProvider(requireActivity()).get(SharedPhonesViewModel::class.java)
+
+
+        viewModel = ViewModelProvider(requireActivity()).get(SharedPhonesViewModel::class.java)
 
         viewModel.filterLiveData.observe(viewLifecycleOwner) {
 
-            Log.d("PhonesFragment: ", it.toString())
+            Log.d("PhonesFragmentFilterObserve: ", it.toString())
             viewModel.update()
 
         }
         viewModel.phonesLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is ResourceState.Success -> {
-                    Log.d("PhonesFragment: ", it.data.toString())
-                    if (viewModel.filterLiveData.value == null) {
-                        bestSellerAdapter.submitList(it.data?.bestSeller)
-                        hotSaleAdapter.submitList(it.data?.homeStoreHotSale)
-
-
-                    } else {
-                        var newBestSeller = it.data?.let { phones -> viewModel.filterBrand(phones) }
-                        bestSellerAdapter.submitList(newBestSeller?.bestSeller)
-                    }
-
+                    Log.d("PhonesFragmentObserve: ", it.data.toString())
+                    showPhones(it)
 
                 }
                 is ResourceState.Error -> {
-                    Log.d("PhonesFragment: ", it.message.toString())
+                    Log.d("PhonesFragmentObserve: ", it.message.toString())
 
                 }
                 is ResourceState.Loading -> {
-                    Log.d("PhonesFragment: ", "loading...")
+                    Log.d("PhonesFragmentObserve: ", "loading...")
 
                 }
             }
         }
+
 
 
     }
@@ -100,9 +96,18 @@ class PhonesFragment : Fragment() {
 
 
     private fun showPhones(resourceState: ResourceState<PhonesDto>) {
+        if (viewModel.filterLiveData.value == null) {
+            bestSellerAdapter.submitList(resourceState.data?.bestSeller)
+            hotSaleAdapter.submitList(resourceState.data?.homeStoreHotSale)
 
-        hotSaleAdapter.submitList(resourceState.data?.homeStoreHotSale)
-        bestSellerAdapter.submitList(resourceState.data?.bestSeller)
+
+        } else {
+            var newBestSeller = resourceState.data?.let { phones -> viewModel.filterBrand(phones) }
+            bestSellerAdapter.submitList(newBestSeller?.bestSeller)
+            hotSaleAdapter.submitList(resourceState.data?.homeStoreHotSale)
+
+
+        }
 
     }
 
