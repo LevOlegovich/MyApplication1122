@@ -39,10 +39,12 @@ class FilterBottomSheetDialog() : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SharedPhonesViewModel::class.java)
 
-        getAndSetupFilter()
+        viewModel.filterLiveData.observe(viewLifecycleOwner) {
+            getAndSetupFilter(it)
+        }
+
         binding.doneBtn.setOnClickListener {
             viewModel.saveFilter(
-
                 FilterModel(
                     brandSpinner.selectedItem.toString(),
                     priceSpinner.selectedItem.toString(),
@@ -57,15 +59,15 @@ class FilterBottomSheetDialog() : BottomSheetDialogFragment() {
         }
     }
 
-    private fun getAndSetupFilter() {
+    private fun getAndSetupFilter(filterModel: FilterModel) {
         val listBrand = resources.getStringArray(R.array.brand_spinner).toList()
-        brandSpinner.setSelection(listBrand.indexOf(viewModel.filterLiveData.value?.brand))
+        brandSpinner.setSelection(listBrand.indexOf(filterModel.brand))
 
         val listPrice = resources.getStringArray(R.array.price_spinner).toList()
-        priceSpinner.setSelection(listPrice.indexOf(viewModel.filterLiveData.value?.price))
+        priceSpinner.setSelection(listPrice.indexOf(filterModel.price))
 
         val listSize = resources.getStringArray(R.array.size_spinner).toList()
-        sizeSpinner.setSelection(listSize.indexOf(viewModel.filterLiveData.value?.size))
+        sizeSpinner.setSelection(listSize.indexOf(filterModel.size))
 
 
         val params = mapOf(

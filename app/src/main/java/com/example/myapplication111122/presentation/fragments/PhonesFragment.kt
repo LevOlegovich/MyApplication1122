@@ -8,16 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication111122.data.models.PhonesDto
 import com.example.myapplication111122.databinding.FragmentPhonesBinding
 import com.example.myapplication111122.presentation.adapters.bestseller.BestSellerAdapter
 import com.example.myapplication111122.presentation.adapters.homestorehotsale.HotSaleAdapter
 import com.example.myapplication111122.presentation.viewmodel.SharedPhonesViewModel
 import com.example.myapplication111122.utils.ResourceState
-import kotlinx.android.synthetic.main.fragment_phones.*
 
 
 class PhonesFragment : Fragment() {
@@ -49,17 +46,17 @@ class PhonesFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(SharedPhonesViewModel::class.java)
 
-        viewModel.filterLiveData.observe(viewLifecycleOwner) {
+//        viewModel.filterLiveData.observe(viewLifecycleOwner) {
+//            Log.d("PhonesFragmentFilterObserve: ", it.toString())
+//            viewModel.update(it)
+//
+//        }
 
-            Log.d("PhonesFragmentFilterObserve: ", it.toString())
-            viewModel.update()
-
-        }
         viewModel.phonesLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is ResourceState.Success -> {
                     Log.d("PhonesFragmentObserve: ", it.data.toString())
-                    showPhones(it)
+                    showPhones(it.data)
 
                 }
                 is ResourceState.Error -> {
@@ -72,7 +69,6 @@ class PhonesFragment : Fragment() {
                 }
             }
         }
-
 
 
     }
@@ -95,18 +91,15 @@ class PhonesFragment : Fragment() {
     }
 
 
-    private fun showPhones(resourceState: ResourceState<PhonesDto>) {
+    private fun showPhones(phones: PhonesDto?) {
         if (viewModel.filterLiveData.value == null) {
-            bestSellerAdapter.submitList(resourceState.data?.bestSeller)
-            hotSaleAdapter.submitList(resourceState.data?.homeStoreHotSale)
-
+            bestSellerAdapter.submitList(phones?.bestSeller)
+            hotSaleAdapter.submitList(phones?.homeStoreHotSale)
 
         } else {
-            var newBestSeller = resourceState.data?.let { phones -> viewModel.filterBrand(phones) }
+            var newBestSeller = phones?.let { viewModel.filterBrand(it) }
             bestSellerAdapter.submitList(newBestSeller?.bestSeller)
-            hotSaleAdapter.submitList(resourceState.data?.homeStoreHotSale)
-
-
+            hotSaleAdapter.submitList(phones?.homeStoreHotSale)
         }
 
     }

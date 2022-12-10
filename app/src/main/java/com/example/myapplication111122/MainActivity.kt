@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_splash)
-
         CoroutineScope(Dispatchers.Main).launch {
             delay(1000)
             _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+
 
     private fun initBottomBar() {
         val shoppingCartItem =
